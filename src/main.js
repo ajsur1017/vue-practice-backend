@@ -1,8 +1,22 @@
-import Vue from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createWebHistory, createRouter } from "vue-router";
+import routes from "./routes";
+import "milligram";
 
-Vue.config.productionTip = false
+//Create our Router
+const router = createRouter({
+  // Create a web history
+  history: createWebHistory(),
+  // inject our routes
+  routes,
+});
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+//Create our vue application
+const app = createApp(App);
+
+// inject our router into our app
+app.use(router);
+
+// Mount our App to the DOM
+app.mount("#app");
